@@ -4,14 +4,14 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 init = () => { d3.json(url).then((data) => {
     console.log('data: ', data);
 
-    let ids = data.names;
-    console.log('ids: ', ids);
-    //populate dropdownmenu options with ids
-    for (let idset in ids)
-        {d3.select("#selDataset").append("option").property("value", ids[idset]).text(ids[idset])};
+    let info = data.names;
+    console.log('info: ', info);
+    //populate dropdownmenu options with candidate info
+    for (let infoset in info)
+        {d3.select("#selDataset").append("option").property("value", info[infoset]).text(info[infoset])};
     
     //populate charts and demographics with random id value initially
-    random = ids[ids.length * Math.random() | 0];
+    random = info[info.length * Math.random() | 0];
     //populate drop down menu with initial value
     d3.select("#selDataset").property("value", random) ;
 
@@ -20,8 +20,11 @@ init = () => { d3.json(url).then((data) => {
     visuals(data, random);
     //get selected value by id https://www.techiedelight.com/get-selected-value-dropdown-javascript-onchange/
     //get id (this.value)from dropdown selection and call function that calls graph function referencing selected id
-    document.getElementById('selDataset').onchange = function() {
-    visuals(data, this.value)};
+    // document.getElementById('selDataset').onchange = function() {
+    // visuals(data, this.value)};
+    // Reference optionChanged from index.html and use value from dropdownmenu in function--reference error averted
+    optionChanged = Id =>{
+        visuals(data, Id)};
     });
 
 }; 
@@ -42,6 +45,7 @@ visuals = (data, sd) => {
         type: "bar",
         orientation: 'h'
     }];
+     //bubble chart trace and values
     let dbubble = [{
 
         x: Sfilter.otu_ids,
