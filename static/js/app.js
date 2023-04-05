@@ -2,16 +2,16 @@
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 // Fetch the JSON data within init function with d3.json within .then 
 init = () => { d3.json(url).then((data) => {
-    console.log('data: ', data);
+    // console.log('data: ', data);
 
-    let info = data.names;
-    console.log('info: ', info);
-    //populate dropdownmenu options with candidate info
-    for (let infoset in info)
-        {d3.select("#selDataset").append("option").property("value", info[infoset]).text(info[infoset])};
+    let ids = data.names;
+    console.log('ids: ', ids);
+    //populate dropdownmenu options with candidate ids
+    for (let id in ids)
+        {d3.select("#selDataset").append("option").property("value", ids[id]).text(ids[id])};
     
     //populate charts and demographics with random id value initially
-    random = info[info.length * Math.random() | 0];
+    random = ids[ids.length * Math.random() | 0];
     //populate drop down menu with initial value
     d3.select("#selDataset").property("value", random) ;
 
@@ -98,10 +98,10 @@ visuals = (data, sd) => {
               line: { color: "black", width: 4 },
               thickness: 0.75,
               value: Mfilter.wfreq}}
-        }];
-        Plotly.newPlot("gauge", dgauge);//end BONUS section
+    }];
+    Plotly.newPlot("gauge", dgauge);//end BONUS section
 
         
-    };
+};
 
 init();
