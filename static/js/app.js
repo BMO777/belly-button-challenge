@@ -18,13 +18,15 @@ init = () => { d3.json(url).then((data) => {
     //pass data and initially random then selected id variables to visuals function outside init function
     //initially call random id to filter values within graph function holding plotting data
     visuals(data, random);
+    bonus(data, random);
     //get selected value by id https://www.techiedelight.com/get-selected-value-dropdown-javascript-onchange/
     //get id (this.value)from dropdown selection and call function that calls graph function referencing selected id
     // document.getElementById('selDataset').onchange = function() {
     // visuals(data, this.value)};
     // Reference optionChanged from index.html and use value from dropdownmenu in function--reference error averted
     optionChanged = Id =>{
-        visuals(data, Id)};
+        visuals(data, Id);
+        bonus(data, Id);};
     });
 
 }; 
@@ -70,38 +72,7 @@ visuals = (data, sd) => {
     //.entries in javascript is like .items in python
     for (let item in dict)
         {d3.select(".panel-body").append("h6").text(dict[item])};//populate demographics panel body appending h6 row for every value
-
-    //BONUS
-    let dgauge = [{
-        domain : {x: [0,1], y:[0,1]},
-        value : Mfilter.wfreq,
-        title : {text : "Belly Button Wash Frequency Per Week"},
-        type : "indicator",
-        mode : "number+gauge",
-        // colorscale: 'Greens',
-       
-        gauge: {
-            axis: { range: [null, 9],  dtick: 1},
-            bar: { color: "orange" },
-
-            steps : [
-                //generated with the help of https://coolors.co
-                {'range': [1, 2], 'color': "003f23"},                
-                {'range': [2, 3], 'color': "70ffb5"},
-                {'range': [3, 4], 'color': "4fe397"},
-                {'range': [4, 5], 'color': "54cf91"},
-                {'range': [5, 6], 'color': "54cf91"},
-                {'range': [6, 7], 'color': "389f6c"},
-                {'range': [7, 8], 'color': "389f6c"},
-                {'range': [8, 9], 'color': "389f6c"},],
-            threshold: {
-              line: { color: "black", width: 4 },
-              thickness: 0.75,
-              value: Mfilter.wfreq}}
-    }];
-    Plotly.newPlot("gauge", dgauge);//end BONUS section
-
-        
+            
 };
 
 init();
