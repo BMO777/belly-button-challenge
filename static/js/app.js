@@ -1,6 +1,6 @@
 // Get the samples.json endpoint
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
-// Fetch the JSON data within init function with .then 
+// Fetch the JSON data within init function with d3.json within .then 
 init = () => { d3.json(url).then((data) => {
     console.log('data: ', data);
 
@@ -71,7 +71,7 @@ visuals = (data, sd) => {
     let dgauge = [{
         domain : {x: [0,1], y:[0,1]},
         value : Mfilter.wfreq,
-        title : {text : "Wash Frequency"},
+        title : {text : "Belly Button Wash Frequency Per Week"},
         type : "indicator",
         mode : "number+gauge",
         // colorscale: 'Greens',
@@ -79,6 +79,16 @@ visuals = (data, sd) => {
         gauge: {
             axis: { range: [null, 9],  dtick: 1},
             bar: { color: "orange" },
+
+            steps : [
+                {'range': [1, 2], 'color': "003f23"},                
+                {'range': [2, 3], 'color': "70ffb5"},
+                {'range': [3, 4], 'color': "4fe397"},
+                {'range': [4, 5], 'color': "54cf91"},
+                {'range': [5, 6], 'color': "54cf91"},
+                {'range': [6, 7], 'color': "389f6c"},
+                {'range': [7, 8], 'color': "389f6c"},
+                {'range': [8, 9], 'color': "389f6c"},],
             threshold: {
               line: { color: "black", width: 4 },
               thickness: 0.75,
@@ -90,4 +100,3 @@ visuals = (data, sd) => {
     };
 
 init();
-
