@@ -81,6 +81,7 @@ visuals = (data, sd) => {
             bar: { color: "orange" },
 
             steps : [
+                //generated with the help of https://coolors.co
                 {'range': [1, 2], 'color': "003f23"},                
                 {'range': [2, 3], 'color': "70ffb5"},
                 {'range': [3, 4], 'color': "4fe397"},
