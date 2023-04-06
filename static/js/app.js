@@ -18,7 +18,7 @@ init = () => { d3.json(url).then((data) => {
     //pass data and initially random then selected id variables to visuals function outside init function
     //initially call random id to filter values within graph function holding plotting data
     visuals(data, random);
-    bonus(data, random);
+ 
     //get selected value by id https://www.techiedelight.com/get-selected-value-dropdown-javascript-onchange/
     //get id (this.value)from dropdown selection and call function that calls graph function referencing selected id
     // document.getElementById('selDataset').onchange = function() {
@@ -26,7 +26,7 @@ init = () => { d3.json(url).then((data) => {
     // Reference optionChanged from index.html and use value from dropdownmenu in function--reference error averted
     optionChanged = Id =>{
         visuals(data, Id);
-        bonus(data, Id);};
+        };
     });
 
 }; 
@@ -64,7 +64,6 @@ visuals = (data, sd) => {
     Plotly.newPlot("bubble", dbubble);  
     //filter all individual metadata used in demographics table and gauge chart
     let Mfilter = data.metadata.filter(ds => ds.id == (sd))[0];
-
     //clear demographics box before change
     d3.select("#sample-metadata").html('');
     //filter once again based on sd id in metadata and use colon and space, instead of default comma to separate values in Object.entries
@@ -72,6 +71,7 @@ visuals = (data, sd) => {
     //.entries in javascript is like .items in python
     for (let item in dict)
         {d3.select(".panel-body").append("h6").text(dict[item])};//populate demographics panel body appending h6 row for every value
+    bonus(Mfilter.wfreq);   //reference to bonus gauge
             
 };
 

@@ -1,12 +1,11 @@
 
 
 
-bonus = (data, sd) => {//BONUS
+bonus = (Mfilterwfreq) => {//BONUS
         //filter all individual metadata used in demographics table and gauge chart
-    let Mfilter = data.metadata.filter(ds => ds.id == (sd))[0];
     let dgauge = [{
         domain : {x: [0,1], y:[0,1]},
-        value : Mfilter.wfreq,
+        value : Mfilterwfreq,
         title : {text : "Belly Button Wash Frequency Per Week"},
         type : "indicator",
         mode : "number+gauge",
@@ -29,6 +28,6 @@ bonus = (data, sd) => {//BONUS
             threshold: {
               line: { color: "black", width: 4 },
               thickness: 0.75,
-              value: Mfilter.wfreq}}
+              value: Mfilterwfreq}}
     }];
     Plotly.newPlot("gauge", dgauge);}//end BONUS section
