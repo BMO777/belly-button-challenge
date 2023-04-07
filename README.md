@@ -4,11 +4,11 @@ In this repository a html frame is modified by javascript files to visualize dat
 
 The index.html file holds the frame and references sites for d3, plotly and the css styles used to provide a framework for visuaizations.
 
-In the folderpath static/js/ the app.js javascript file, d3 is used to load the endpoint containing data and this data is unpacked and used to populate a bar graph, bubble chart, and bonus gauge chart which is referenced in the file bonus.js.
+In the folderpath -static/js/app.js-, withinin the javascript file, d3 is used to load the endpoint containing data and this data is unpacked and used to populate a bar graph, bubble chart, and bonus gauge chart which is referenced in the file bonus.js.
 
 The bar chart visalizes the top 10 OTUs(taxonomic units) in a candidate belly button.
 
-The bubble chart visualized all OTUs but the dominant or most populous ones are moset visible because size of bubble references samples
+The bubble chart visualized all OTUs but the dominant or most populous ones are most visible because size of bubble references samples
 
 The bonus gauge chart visualizes belly-button washing frequency.
 
